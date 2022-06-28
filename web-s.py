@@ -1,6 +1,23 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import csv
+import json
+
+def make_json(csvFilePath, jsonFilePath):
+     
+    data = {}
+     
+    with open(csvFilePath, encoding='utf-8') as csvf:
+        csvReader = csv.DictReader(csvf)
+
+        for rows in csvReader:
+
+            key = rows['Index']
+            data[key] = rows
+
+    with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
+        jsonf.write(json.dumps(data, indent=4))
  
 r = requests.get('https://www.freethink.com/articles')
  
@@ -29,7 +46,15 @@ for image in images:
     src = image.get('src')
     images_list.append(src)
 
-df = pd.DataFrame({'Title':title_list,'Link':refined_link,'Image':images_list}) 
+index = []
+for i in range(0,len(title_list)):
+    index.append(i)
+
+df = pd.DataFrame({'Index':index,'Title':title_list,'Link':refined_link,'Image':images_list}) 
 df.to_csv('scraped.csv', index=False, encoding='utf-8')
+
+csvFilePath = r'scraped.csv'
+jsonFilePath = r'scraped.json'
+make_json(csvFilePath, jsonFilePath)
 
 
