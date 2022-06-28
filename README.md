@@ -1,11 +1,18 @@
 ﻿# Katha_Test
 
-Run web-s.py : python web-s.py
+## Clone the Repo
+`git clone https://github.com/Fayazazeemp/Katha_Test.git`
 
-Run backend.py : python backend.py
+`cd Katha_Test`
 
-Goto frontend folder : cd frontend
+## Run Backend
+`pip install -r requirements.txt`
 
-Install dependencies : npm install
+`python backend.py`
 
-Run frontend : npm run start
+## Run Frontend
+`cd frontend`
+
+`npm i`
+
+`npm run start`
