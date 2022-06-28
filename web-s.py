@@ -6,7 +6,7 @@ import json
 
 def make_json(csvFilePath, jsonFilePath):
      
-    data = {}
+    data = []
      
     with open(csvFilePath, encoding='utf-8') as csvf:
         csvReader = csv.DictReader(csvf)
@@ -14,7 +14,7 @@ def make_json(csvFilePath, jsonFilePath):
         for rows in csvReader:
 
             key = rows['Index']
-            data[key] = rows
+            data.append(rows)
 
     with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(data, indent=4))

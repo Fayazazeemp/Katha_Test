@@ -24,11 +24,13 @@ function App() {
 }, []);
 
 
-  let items=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
   let itemList=[];
-  items.forEach((item)=>{
-    itemList.push( <Card title={content[item].Title} image={content[item].Image} link={content[item].Link}></Card>)
-  })
+  if (content){
+    content.map((item)=>{
+      itemList.push( <Card title={item.Title} image={item.Image} link={item.Link}></Card>)
+    })
+  }
+  
 
   return (
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-center bg-indigo-50 px-4">
